@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var CSVError_1 = __importDefault(require("./CSVError"));
 var set_1 = __importDefault(require("lodash/set"));
-var numReg = /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/;
+var numReg = /^[-+]?(0|[1-9][0-9]*)\.?[0-9]+([eE][-+]?[0-9]+)?$/;
 function default_1(csvRows, conv) {
     var res = [];
     for (var i = 0, len = csvRows.length; i < len; i++) {
