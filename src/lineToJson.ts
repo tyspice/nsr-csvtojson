@@ -165,11 +165,21 @@ function checkType(item: string, head: string, headIdx: number, conv: Converter)
 }
 
 function numberType(item) {
+
+  if(hasLeadingZeroes(item)) {
+    return stringType(item)
+  }
+
   var rtn = parseFloat(item);
   if (isNaN(rtn)) {
     return item;
   }
   return rtn;
+}
+
+function hasLeadingZeroes(item): boolean {
+  const str = item.toString();
+  return str && str.startsWith('0') && (!str.startsWith('0.'));
 }
 
 function stringType(item: string): string {

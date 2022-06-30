@@ -165,11 +165,18 @@ function checkType(item, head, headIdx, conv) {
     }
 }
 function numberType(item) {
+    if (hasLeadingZeroes(item)) {
+        return stringType(item);
+    }
     var rtn = parseFloat(item);
     if (isNaN(rtn)) {
         return item;
     }
     return rtn;
+}
+function hasLeadingZeroes(item) {
+    var str = item.toString();
+    return str && str.startsWith('0') && (!str.startsWith('0.'));
 }
 function stringType(item) {
     return item.toString();
