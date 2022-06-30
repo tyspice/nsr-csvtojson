@@ -4,7 +4,7 @@ import { CellParser, ColumnParam } from "./Parameters";
 import set from "lodash/set";
 import { ParseRuntime } from "./ParseRuntime";
 
-var numReg = /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/;
+var numReg = /^[-+]?(0|[1-9][0-9]*)\.?[0-9]+([eE][-+]?[0-9]+)?$/;
 
 export default function (csvRows: string[][], conv: Converter): JSONResult[] {
   const res: JSONResult[] = [];
