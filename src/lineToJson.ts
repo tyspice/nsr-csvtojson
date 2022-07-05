@@ -4,7 +4,7 @@ import { CellParser, ColumnParam } from "./Parameters";
 import set from "lodash/set";
 import { ParseRuntime } from "./ParseRuntime";
 
-var numReg = /^[-+]?(0|[1-9][0-9]*)\.?[0-9]+([eE][-+]?[0-9]+)?$/;
+var numReg = /^[-+]?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][-+]?[0-9]+)?$/;
 
 export default function (csvRows: string[][], conv: Converter): JSONResult[] {
   const res: JSONResult[] = [];
@@ -165,21 +165,11 @@ function checkType(item: string, head: string, headIdx: number, conv: Converter)
 }
 
 function numberType(item) {
-
-  if(hasLeadingZeroes(item)) {
-    return stringType(item)
-  }
-
   var rtn = parseFloat(item);
   if (isNaN(rtn)) {
     return item;
   }
   return rtn;
-}
-
-function hasLeadingZeroes(item): boolean {
-  const str = item.toString();
-  return str && str.startsWith('0') && (!str.startsWith('0.'));
 }
 
 function stringType(item: string): string {

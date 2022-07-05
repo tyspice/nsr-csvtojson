@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var CSVError_1 = __importDefault(require("./CSVError"));
 var set_1 = __importDefault(require("lodash/set"));
-var numReg = /^[-+]?(0|[1-9][0-9]*)\.?[0-9]+([eE][-+]?[0-9]+)?$/;
+var numReg = /^[-+]?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][-+]?[0-9]+)?$/;
 function default_1(csvRows, conv) {
     var res = [];
     for (var i = 0, len = csvRows.length; i < len; i++) {
@@ -165,18 +165,11 @@ function checkType(item, head, headIdx, conv) {
     }
 }
 function numberType(item) {
-    if (hasLeadingZeroes(item)) {
-        return stringType(item);
-    }
     var rtn = parseFloat(item);
     if (isNaN(rtn)) {
         return item;
     }
     return rtn;
-}
-function hasLeadingZeroes(item) {
-    var str = item.toString();
-    return str && str.startsWith('0') && (!str.startsWith('0.'));
 }
 function stringType(item) {
     return item.toString();
